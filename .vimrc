@@ -55,5 +55,6 @@ endif
 set laststatus=2
 set ruler
 set number
-set termguicolors
-hi Normal guibg=#000000 guifg=#d3d3d3
+set hidden
+set nocp
+filetype plugin on
