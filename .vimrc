@@ -64,7 +64,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end() 
 nnoremap <silent> <Leader>b :Buffers<CR>
-nnoremap <silent> <C-f> :Files<CR>
+nnoremap <silent> <C-s> :Files<CR>
 nnoremap <silent> <Leader>f :Rg<CR>
 nnoremap <silent> <Leader>/ :BLines<CR>
 nnoremap <silent> <Leader>' :Marks<CR>
