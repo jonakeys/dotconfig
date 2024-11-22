@@ -31,7 +31,7 @@ endif
 
 if &t_Co > 2 || has("gui_running")
   " Switch on highlighting the last used search pattern.
-  set hlsearch
+  set nohlsearch
 endif
 
 " Put these in an autocmd group, so that we can delete them easily.
@@ -57,7 +57,8 @@ set ruler
 set number
 set hidden
 set nocp
-filetype plugin on
+filetype plugin indent on
+set autoindent expandtab tabstop=2 shiftwidth=2
 
 call plug#begin()
 Plug 'junegunn/fzf.vim'
