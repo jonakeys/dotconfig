@@ -52,21 +52,27 @@ if has('syntax') && has('eval')
   packadd! matchit
 endif
 
+" Set preferences
 set laststatus=2
 set ruler
 set number
 set hidden
 set nocp
 filetype plugin indent on
+" Set indentation
 set autoindent expandtab tabstop=2 shiftwidth=2
+" Set search ignore case by default
 set ignorecase smartcase
 
+" Load plugins
 call plug#begin()
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/vader.vim'
 Plug 'Vimjas/vint'
 call plug#end() 
+
+" Set hotkeys
 nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <C-s> :Files<CR>
 nnoremap <silent> <Leader>f :Rg<CR>
@@ -77,7 +83,10 @@ nnoremap <silent> <Leader>H :Helptags<CR>
 nnoremap <silent> <Leader>hh :History<CR>
 nnoremap <silent> <Leader>h: :History:<CR>
 nnoremap <silent> <Leader>h/ :History/<CR>
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
+" Function to execute Exercism vimscript tests with :Test
 function! s:exercism_tests()
   if expand('%:e') == 'vim'
     let testfile = printf('%s/%s.vader', expand('%:p:h'),
@@ -99,6 +108,8 @@ function! s:exercism_tests()
     Vader
   endif
 endfunction
-
 autocmd BufRead *.{vader,vim}
       \ command! -buffer Test call s:exercism_tests()
+
+" Displays a friendly ASCII-art cat
+new | redraw | echo ">^.^<"
