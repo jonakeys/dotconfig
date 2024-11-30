@@ -58,6 +58,8 @@ set ruler
 set number
 set hidden
 set nocp
+set wrap
+set colorcolumn=80
 filetype plugin indent on
 " Set indentation
 set autoindent expandtab tabstop=2 shiftwidth=2
@@ -112,4 +114,4 @@ autocmd BufRead *.{vader,vim}
       \ command! -buffer Test call s:exercism_tests()
 
 " Displays a friendly ASCII-art cat
-new | redraw | echo ">^.^<"
+redraw | echo ">^.^<"
