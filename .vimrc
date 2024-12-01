@@ -21,25 +21,25 @@ endif
 source $VIMRUNTIME/defaults.vim
 
 if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
+set nobackup		" do not keep a backup file, use versions instead
 else
-  set backup		" keep a backup file (restore to previous version)
-  if has('persistent_undo')
-    set undofile	" keep an undo file (undo changes after closing)
-  endif
+set backup		" keep a backup file (restore to previous version)
+if has('persistent_undo')
+  set undofile	" keep an undo file (undo changes after closing)
+endif
 endif
 
 if &t_Co > 2 || has("gui_running")
-  " Switch on highlighting the last used search pattern.
-  set nohlsearch
+" Switch on highlighting the last used search pattern.
+set nohlsearch
 endif
 
 " Put these in an autocmd group, so that we can delete them easily.
 augroup vimrcEx
-  au!
+au!
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+" For all text files set 'textwidth' to 78 characters.
+autocmd FileType text setlocal textwidth=78
 augroup END
 
 " Add optional packages.
@@ -49,7 +49,7 @@ augroup END
 " The ! means the package won't be loaded right away but when plugins are
 " loaded during initialization.
 if has('syntax') && has('eval')
-  packadd! matchit
+packadd! matchit
 endif
 
 " Set preferences
@@ -62,7 +62,7 @@ set wrap
 set colorcolumn=80
 filetype plugin indent on
 " Set indentation
-set autoindent expandtab tabstop=2 shiftwidth=2
+set smartindent expandtab tabstop=2 shiftwidth=2
 " Set search ignore case by default
 set ignorecase smartcase
 
@@ -90,28 +90,28 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Function to execute Exercism vimscript tests with :Test
 function! s:exercism_tests()
-  if expand('%:e') == 'vim'
-    let testfile = printf('%s/%s.vader', expand('%:p:h'),
-          \ tr(expand('%:p:h:t'), '-', '_'))
-    if !filereadable(testfile)
-      echoerr 'File does not exist: '. testfile
-      return
-    endif
-    source %
-    execute 'Vader' testfile
-  else
-    let sourcefile = printf('%s/%s.vim', expand('%:p:h'),
-          \ tr(expand('%:p:h:t'), '-', '_'))
-    if !filereadable(sourcefile)
-      echoerr 'File does not exist: '. sourcefile
-      return
-    endif
-    execute 'source' sourcefile
-    Vader
+if expand('%:e') == 'vim'
+  let testfile = printf('%s/%s.vader', expand('%:p:h'),
+        \ tr(expand('%:p:h:t'), '-', '_'))
+  if !filereadable(testfile)
+    echoerr 'File does not exist: '. testfile
+    return
   endif
+  source %
+  execute 'Vader' testfile
+else
+  let sourcefile = printf('%s/%s.vim', expand('%:p:h'),
+        \ tr(expand('%:p:h:t'), '-', '_'))
+  if !filereadable(sourcefile)
+    echoerr 'File does not exist: '. sourcefile
+    return
+  endif
+  execute 'source' sourcefile
+  Vader
+endif
 endfunction
 autocmd BufRead *.{vader,vim}
-      \ command! -buffer Test call s:exercism_tests()
+    \ command! -buffer Test call s:exercism_tests()
 
 " Displays a friendly ASCII-art cat
 redraw | echo ">^.^<"
