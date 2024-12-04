@@ -65,6 +65,7 @@ filetype plugin indent on
 set smartindent expandtab tabstop=2 shiftwidth=2
 " Set search ignore case by default
 set ignorecase smartcase
+autocmd FileType python setlocal expandtab shiftwidth=2 softtabstop=2
 
 " Load plugins
 call plug#begin()
